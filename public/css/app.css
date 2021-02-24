@@ -11009,6 +11009,8 @@ li {
   font-family: "Ogg-Rom", sans-serif;
   font-size: 4em;
   position: fixed;
+  top: 0;
+  z-index: 40;
 }
 
 .navbar .container .collapse .navbar-nav.ml-auto {
@@ -11024,7 +11026,8 @@ li {
   cursor: pointer;
   margin-bottom: 0;
   position: fixed;
-  top: 30px;
+  top: 23px;
+  z-index: 30;
 }
 
 .navbar .container .collapse .navbar-nav.ml-auto label span {
@@ -11071,11 +11074,11 @@ li {
 .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu {
   display: none;
   position: fixed;
-  top: 80px;
+  top: 0;
   text-align: right;
   right: 0;
   left: 0;
-  padding: 10px 20px;
+  padding: 90px 20px 10px;
   background: #f0f0ef;
 }
 

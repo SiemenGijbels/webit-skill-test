@@ -2,7 +2,7 @@
 
 @section('content')
     @foreach($posts as $post)
-        <a href="/work/{{$post->slug}}">
+        <a href="/items/{{$post->slug}}">
             <div class="workItem">
                 <h2>{{ $post->title }}</h2>
                 @if(is_array(json_decode($post->media)))
