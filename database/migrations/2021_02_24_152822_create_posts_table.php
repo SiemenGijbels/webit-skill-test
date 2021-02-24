@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->string('media')->nullable();
             $table->boolean('archived')->default(false);
-            $table->float('price');
+            $table->integer('price');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });

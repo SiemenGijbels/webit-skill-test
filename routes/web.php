@@ -14,9 +14,7 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostsController::class, 'index']);
 
 Auth::routes();
 
@@ -24,4 +22,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/items/{item}', [PostsController::class, 'show']);
 
-Route::get('admin/index', [PostsController::class, 'adminIndex']);
+Route::get('/admin', [PostsController::class, 'adminIndex'])->middleware('admin');
+Route::get('/admin/create', [PostsController::class, 'create'])->middleware('admin');
+Route::post('/admin/create', [PostsController::class, 'store'])->middleware('admin');

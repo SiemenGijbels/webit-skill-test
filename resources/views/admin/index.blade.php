@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('page_title', 'Admin — Siemen Gijbels')
 

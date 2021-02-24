@@ -11097,4 +11097,13 @@ li {
   border: none;
 }
 
+.fieldGroup {
+  padding: 1em;
+}
+
+.fieldGroup .field .control input,
+.fieldGroup .field .control textarea {
+  width: 100%;
+}
+
 

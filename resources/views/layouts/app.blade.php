@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>@yield('page_title')</title>
+    @yield('header_scripts')
 </head>
 <body>
 <div id="app">
@@ -85,16 +87,15 @@
         @yield('content')
     </main>
 </div>
+@yield('footer_scripts')
 <script>
 
     $("#menu").click(function () {
         $("input#check").on("change", function () {
             if ($(this).is(':checked')) {
-                console.log("checked");
                 $('.toggleMenu').slideDown();
                 $('.navbar').css('background', '#f0f0ef');
             } else {
-                console.log("unchecked");
                 $('.toggleMenu').slideUp();
                 $('.navbar').css('background', 'none');
             }
