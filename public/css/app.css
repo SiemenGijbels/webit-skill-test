@@ -11106,4 +11106,16 @@ li {
   width: 100%;
 }
 
+.homepage-grid {
+  width: 100vw;
+}
+
+.info-wrapper {
+  padding: 1em;
+}
+
+.info-wrapper .price {
+  font-family: "Ogg-Rom", serif;
+}
+
 

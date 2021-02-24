@@ -23,5 +23,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/items/{item}', [PostsController::class, 'show']);
 
 Route::get('/admin', [PostsController::class, 'adminIndex'])->middleware('admin');
+
 Route::get('/admin/create', [PostsController::class, 'create'])->middleware('admin');
 Route::post('/admin/create', [PostsController::class, 'store'])->middleware('admin');
+
+Route::get('/admin/{item}/edit', [PostsController::class, 'edit'])->middleware('admin');
+Route::put('/items/{item}', [PostsController::class, 'update'])->middleware('admin');
+
+Route::get('/admin/{item}/delete', [PostsController::class, 'destroy'])->middleware('admin');

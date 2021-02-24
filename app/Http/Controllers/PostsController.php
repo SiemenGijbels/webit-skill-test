@@ -11,30 +11,35 @@ use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $posts = Post::latest()->get();
 
         return view('welcome', ['posts' => $posts]);
     }
 
-    public function adminIndex() {
+    public function adminIndex()
+    {
         $posts = Post::latest()->get();
 
         return view('admin.index', ['posts' => $posts]);
     }
 
-    public function show($slug) {
+    public function show($slug)
+    {
         return view('post', [
             'post' => Post::where('slug', $slug)->firstOrFail()
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         Auth::user();
         return view('admin.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         Auth::user();
         request()->validate([
             'title' => 'required',
@@ -52,10 +57,8 @@ class PostsController extends Controller
             'media' => request('media'),
         ]);
 
-        if($request->hasfile('media'))
-        {
-            foreach($request->file('media') as $media)
-            {
+        if ($request->hasfile('media')) {
+            foreach ($request->file('media') as $media) {
                 $filename = $media->getClientOriginalName();
 
                 $media->move(public_path('uploads'), $filename);
@@ -66,18 +69,69 @@ class PostsController extends Controller
 
         $post->save();
 
-        return redirect('/item/' . request('slug'));
+        return redirect('/items/' . request('slug'));
     }
 
-    public function edit() {
+    public function edit($slug)
+    {
+        Auth::user();
+        $post = Post::where('slug', $slug)->firstOrFail();
 
+        return view('admin.edit', ['post' => $post]);
     }
 
-    public function update() {
+    public function update(Request $request, $slug)
+    {
+        Auth::user();
 
+        request()->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'price' => 'required',
+            'body' => 'required',
+            'media' => 'required',
+        ]);
+
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        $post->title = request('title');
+        $post->slug = request('slug');
+        $post->price = request('price');
+        $post->body = request('body');
+        $post->media = request('media');
+
+        if ($request->hasfile('media')) {
+            foreach ($request->file('media') as $media) {
+                $filename = $media->getClientOriginalName();
+                $media->move(public_path('uploads'), $filename);
+                $data[] = $filename;
+            }
+            $post->media = json_encode($data);
+        }
+
+        $post->update();
+
+        return redirect('/items/' . request('slug'));
     }
 
-    public function destroy() {
+    public function destroy($slug) {
+        Auth::user();
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $post->delete();
+        return redirect('/admin')->with('info', 'Post deleted!');
+    }
 
+    /**
+     * @return array
+     */
+    public function validatePost()
+    {
+        return request()->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'year' => 'required',
+            'body' => 'required',
+            'media' => 'required'
+        ]);
     }
 }
