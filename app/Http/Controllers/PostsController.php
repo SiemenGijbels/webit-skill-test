@@ -14,7 +14,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::where('archived', 0)->latest()->get();
 
         return view('welcome', ['posts' => $posts]);
     }
@@ -120,6 +120,19 @@ class PostsController extends Controller
         $post->update();
 
         return redirect('/items/' . request('slug'));
+    }
+
+    public function archive($slug) {
+        Auth::user();
+        $post = Post::where('slug', $slug)->firstOrFail();
+        if($post->archived == 0) {
+            $post->archived = 1;
+            $post->update();
+        } else {
+            $post->archived = 0;
+            $post->update();
+        }
+        return redirect('/admin')->with('info', 'Post archived!');
     }
 
     public function destroy($slug) {

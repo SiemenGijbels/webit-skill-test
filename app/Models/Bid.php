@@ -18,8 +18,4 @@ class Bid extends Model
     public function post() {
         return $this->belongsTo('App\Models\Post', 'post_id');
     }
-
-    public function postSlug() {
-        return $this->belongsTo('App\Models\Post', 'slug');
-    }
 }

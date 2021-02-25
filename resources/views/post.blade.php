@@ -28,6 +28,9 @@
     <div class="info-wrapper">
         <h1>{{ $post->title }}</h1>
         <h3 class="price">starting price: €{{ $post->price }},00</h3>
+        @if($post->highest_bid > 0)
+            <h3 class="price">highest current bid: €{{ $post->highest_bid }},00</h3>
+        @endif
 
         <p>{{ $post->body }}</p>
 

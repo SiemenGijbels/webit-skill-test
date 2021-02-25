@@ -21,7 +21,66 @@ class BidController extends Controller
         ]);
         $bid->save();
 
+        $post = Post::where('slug', request('slug'))->firstOrFail();
+        $currentHighestBid = $post->highest_bid;
+        if(request('amount') > $currentHighestBid) {
+            $post->highest_bid = request('amount');
+        }
+        $post->update();
+
         return redirect('/thanks/' . request('slug') . '/' . request('amount'));
+    }
+
+    public function edit($slug, $bidId)
+    {
+        Auth::user();
+
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $bid = Bid::find($bidId);
+
+
+        return view('editbid', ['post' => $post, 'bid' => $bid]);
+    }
+
+    public function update(Request $request, $id, $bidId)
+    {
+        Auth::user();
+        $bid = Bid::find($bidId);
+        $bid->amount = request('amount');
+        $bid->post_id = request('post_id');
+        $bid->slug = request('slug');
+        $bid->user_id = request('user_id');
+        $bid->save();
+
+        $post = Post::where('slug', $id)->firstOrFail();
+        $currentHighestBid = $post->highest_bid;
+        if(request('amount') > $currentHighestBid) {
+            $post->highest_bid = request('amount');
+        }
+        $post->update();
+
+        return redirect('/thanks/' . request('slug') . '/' . request('amount'));
+    }
+
+    public function destroy($slug, $bidId)
+    {
+        Auth::user();
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $bid = Bid::find($bidId);
+        $bid->delete();
+
+        $highest = $post->bids()->orderBy('amount', 'desc')->firstOrFail();
+        $highestBid = $highest->amount;
+
+        if($highestBid) {
+            $post->highest_bid = $highestBid;
+            $post->update();
+        } else {
+            $post->highest_bid = 0;
+            $post->update();
+        }
+
+        return redirect('/items/' . $post->slug);
     }
 
     public function thanks($slug, $amount)
@@ -33,81 +92,4 @@ class BidController extends Controller
         return view('thankyou', ['post' => $post, 'bid' => $bid]);
     }
 
-
-    public function edit($slug)
-    {
-        Auth::user();
-
-        $post = Post::where('slug', $slug)->firstOrFail();
-        $bids = Bid::where('post_id', $post->id)->get();
-
-
-        return view('admin.edit', ['post' => $post]);
-    }
-
-    public function update(Request $request, $slug)
-    {
-        Auth::user();
-
-        request()->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'price' => 'required',
-            'body' => 'required',
-            'media' => 'required',
-        ]);
-
-        $post = Post::where('slug', $slug)->firstOrFail();
-
-        $post->title = request('title');
-        $post->slug = request('slug');
-        $post->price = request('price');
-        $post->body = request('body');
-        $post->media = request('media');
-
-        if ($request->hasfile('media')) {
-            foreach ($request->file('media') as $media) {
-                $filename = $media->getClientOriginalName();
-                $media->move(public_path('uploads'), $filename);
-                $data[] = $filename;
-            }
-            $post->media = json_encode($data);
-        }
-
-        $post->update();
-
-        return redirect('/items/' . request('slug'));
-    }
-
-    public function destroy($slug, $bidId)
-    {
-        Auth::user();
-        $post = Post::where('slug', $slug)->firstOrFail();
-        $bid = Bid::find($bidId);
-        $bid->delete();
-        return redirect('/items/' . $post->slug);
-    }
-
-
-    public function postCommentPost(Request $request)
-    {
-
-        $comment = new Comment([
-            'post_id' => $request->input('post_id'),
-            'content' => $request->input('content'),
-            'user_id' => $request->input('user_id')
-        ]);
-        $comment->save();
-
-        return redirect()->route('content.post', ['id' => $request->input('post_id')]);
-    }
-
-    public function getDeleteComment($postId, $commentId)
-    {
-
-        $post = Post::find($postId);
-        $comment = Comment::find($commentId);
-        $comment->delete();
-        return redirect()->route('content.post', ['id' => $postId]);
-    }
 }

@@ -33,7 +33,11 @@
                     @endif
                     <div class="post-item-info">
                         <h2 class="float-left">{{ $post->title }}</h2>
+                        @if($post->price > $post->highest_bid)
                         <h2 class="float-right price">€{{ $post->price }},00</h2>
+                        @else
+                            <h2 class="float-right price">€{{ $post->highest_bid }},00</h2>
+                        @endif
                     </div>
                 </div>
             </a>

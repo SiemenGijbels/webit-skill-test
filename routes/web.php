@@ -22,7 +22,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/items/{item}', [PostsController::class, 'show']);
+
 Route::post('/items/{item}', [BidController::class, 'store']);
+
+Route::get('/items/{item}/editBid/{bidId}', [BidController::class, 'edit']);
+Route::put('/items/{item}/editBid/{bidId}', [BidController::class, 'update']);
+
 Route::get('/items/{item}/deleteBid/{bidId}', [BidController::class, 'destroy']);
 
 Route::get('/thanks/{slug}/{amount}', [BidController::class, 'thanks']);
@@ -35,4 +40,5 @@ Route::post('/admin/create', [PostsController::class, 'store'])->middleware('adm
 Route::get('/admin/{item}/edit', [PostsController::class, 'edit'])->middleware('admin');
 Route::put('/items/{item}', [PostsController::class, 'update'])->middleware('admin');
 
+Route::get('/admin/{item}/archive', [PostsController::class, 'archive'])->middleware('admin');
 Route::get('/admin/{item}/delete', [PostsController::class, 'destroy'])->middleware('admin');

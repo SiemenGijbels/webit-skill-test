@@ -9,7 +9,6 @@
     <div class="containerCreate">
         <form method="POST" action="/admin/create" enctype="multipart/form-data">
             @csrf
-
             <div class="fieldGroup">
                 <div class="field">
                     <label class="label" for="title">Title</label>

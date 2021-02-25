@@ -8,8 +8,8 @@
 
     <div class="containerCreate">
         <form method="POST" action="/items/{{ $post->slug }}" enctype="multipart/form-data">
-            @csrf
             @method('PUT')
+            @csrf
             <div class="fieldGroup">
                 <div class="field">
                     <label class="label" for="title">Title</label>
