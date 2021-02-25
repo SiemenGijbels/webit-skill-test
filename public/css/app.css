@@ -11013,6 +11013,10 @@ li {
   z-index: 40;
 }
 
+.navbar .container .collapse .navbar-nav.mr-auto .logo:hover {
+  text-decoration: none;
+}
+
 .navbar .container .collapse .navbar-nav.ml-auto {
   text-align: right;
   justify-content: flex-end;
@@ -11100,6 +11104,44 @@ li {
   border: none;
 }
 
+.post-item {
+  width: 90%;
+  min-width: 250px;
+  margin: 30px 5%;
+  overflow: hidden;
+  border-radius: 25px;
+  transition: transform 0.2s;
+}
+
+.post-item img {
+  width: 100%;
+}
+
+.post-item-info {
+  background-color: white;
+  height: 4em;
+}
+
+.post-item-info .float-left,
+.post-item-info .float-right {
+  font-size: 1.3rem;
+}
+
+.post-item-info .float-left {
+  margin-left: 15px;
+  margin-top: 16px;
+}
+
+.post-item-info .float-right {
+  margin-right: 15px;
+  margin-top: 17px;
+}
+
+.post-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px #00000033;
+}
+
 .fieldGroup {
   padding: 1em;
 }
@@ -11113,12 +11155,85 @@ li {
   width: 100vw;
 }
 
+.price {
+  font-family: "Ogg-Rom", serif;
+}
+
 .info-wrapper {
   padding: 1em;
 }
 
-.info-wrapper .price {
-  font-family: "Ogg-Rom", serif;
+.info-wrapper h1,
+.info-wrapper .price,
+.info-wrapper p {
+  margin: 20px 0;
+}
+
+.bid p {
+  font-size: 1.2em;
+  width: 50%;
+  float: left;
+}
+
+.bid p.amount {
+  text-align: right;
+}
+
+.bid .ruler {
+  clear: both;
+}
+
+table {
+  width: 90%;
+  margin: 20px 5%;
+}
+
+@media only screen and (min-width: 700px) {
+  .post-item {
+    width: 45%;
+    margin: 30px 2.5%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .navbar .container .collapse .navbar-nav.ml-auto label {
+    display: none;
+  }
+
+  .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu {
+    display: block;
+    padding: 35px 20px 10px;
+    background: transparent;
+  }
+
+  .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu .nav-item {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .media-wrapper,
+  .info-wrapper {
+    width: 50vw;
+    float: left;
+  }
+
+  .media-wrapper img,
+  .info-wrapper img {
+    width: 100%;
+    max-height: 100vh;
+  }
+
+  .info-wrapper {
+    padding: 20px 40px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .post-item {
+    width: 30%;
+    margin: 30px calc(10%/6);
+  }
 }
 
 

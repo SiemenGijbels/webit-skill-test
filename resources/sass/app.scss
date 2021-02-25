@@ -45,6 +45,9 @@ h1, h2, h3, h4, h5, h6, p, a, li {
                         position: fixed;
                         top: 0;
                         z-index: 40;
+                        &:hover {
+                            text-decoration: none;
+                        }
                     }
                 }
 
@@ -150,6 +153,43 @@ h1, h2, h3, h4, h5, h6, p, a, li {
     }
 }
 
+//HOME
+.post-item {
+    width: 90%;
+    min-width: 250px;
+    margin: 30px 5%;
+    overflow: hidden;
+    border-radius: 25px;
+    -webkit-transition: -webkit-transform 0.2s;
+    -moz-transition: -moz-transform 0.2s;
+    -o-transition: -o-transform 0.2s;
+    transition: transform 0.2s;
+
+    img {
+        width: 100%;
+    }
+    &-info {
+        background-color: white;
+        height: 4em;
+
+        .float-left, .float-right{
+            font-size: 1.3rem;
+        }
+        .float-left {
+            margin-left: 15px;
+            margin-top: 16px;
+        }
+        .float-right {
+            margin-right: 15px;
+            margin-top: 17px;
+        }
+    }
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 15px #00000033;
+    }
+}
+
 // CREATE POST
 
 .fieldGroup {
@@ -168,15 +208,95 @@ h1, h2, h3, h4, h5, h6, p, a, li {
     width: 100vw;
 }
 
+.price {
+    font-family: "Ogg-Rom", serif;
+}
+
 .info-wrapper {
     padding: 1em;
 
-    .price {
-        font-family: "Ogg-Rom", serif;
+    h1, .price, p {
+        margin: 20px 0;
     }
 }
 
+.bid {
+    p {
+        font-size: 1.2em;
+        width: 50%;
+        float: left;
+        &.amount {
+            text-align: right;
+        }
+    }
+    .ruler {
+        clear: both;
+    }
+}
 
+// ADMIN
+
+table {
+    width: 90%;
+    margin: 20px 5%;
+}
+
+
+
+// MEDIA QUERIES
+
+@media only screen and (min-width: 700px) {
+    .post-item {
+        width: 45%;
+        margin: 30px 2.5%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .navbar {
+        .container {
+            .collapse {
+                .navbar-nav {
+                    &.ml-auto {
+                        label {
+                            display: none;
+                        }
+                        .toggleMenu {
+                            display: block;
+                            padding: 35px 20px 10px;
+                            background: transparent;
+                            .nav-item {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1050px) {
+    .media-wrapper, .info-wrapper {
+        width: 50vw;
+        float: left;
+
+        img {
+            width: 100%;
+            max-height: 100vh;
+        }
+    }
+    .info-wrapper {
+        padding: 20px 40px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .post-item {
+        width: 30%;
+        margin: 30px calc(10%/6);
+    }
+}
 
 
 
