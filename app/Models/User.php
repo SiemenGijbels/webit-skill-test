@@ -6,10 +6,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Bid;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    public function bids() {
+        return $this->hasMany('\App\Models\Bid', 'user_id', 'id')->withTimestamps();
+    }
 
     /**
      * The attributes that are mass assignable.

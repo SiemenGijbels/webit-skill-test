@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bid;
 use DB;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -27,8 +28,15 @@ class PostsController extends Controller
 
     public function show($slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        $bids = Bid::where('post_id', $post->id)
+            ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('post', [
-            'post' => Post::where('slug', $slug)->firstOrFail()
+            'post' => $post, 'bids' => $bids
         ]);
     }
 
@@ -119,19 +127,5 @@ class PostsController extends Controller
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->delete();
         return redirect('/admin')->with('info', 'Post deleted!');
-    }
-
-    /**
-     * @return array
-     */
-    public function validatePost()
-    {
-        return request()->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'year' => 'required',
-            'body' => 'required',
-            'media' => 'required'
-        ]);
     }
 }

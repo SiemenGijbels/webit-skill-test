@@ -11,4 +11,8 @@ class Post extends Model
 
     protected $fillable = ['title', 'slug', 'price', 'media', 'body'];
 
+    public function bids() {
+        return $this->hasMany('\App\Models\Bid', 'post_id', 'id')->withTimestamps();
+    }
+
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\BidController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/items/{item}', [PostsController::class, 'show']);
+Route::post('/items/{item}', [BidController::class, 'store']);
+Route::get('/items/{item}/deleteBid/{bidId}', [BidController::class, 'destroy']);
+
+Route::get('/thanks/{slug}/{amount}', [BidController::class, 'thanks']);
 
 Route::get('/admin', [PostsController::class, 'adminIndex'])->middleware('admin');
 

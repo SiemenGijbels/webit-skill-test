@@ -11129,12 +11129,18 @@ li {
 
 .post-item-info .float-left {
   margin-left: 15px;
-  margin-top: 16px;
+  margin-top: 17px;
+  width: calc(60% - 15px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-item-info .float-right {
   margin-right: 15px;
   margin-top: 17px;
+  width: calc(38% - 15px);
+  text-align: right;
 }
 
 .post-item:hover {

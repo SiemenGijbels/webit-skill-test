@@ -32,14 +32,7 @@
         <p>{{ $post->body }}</p>
 
         <hr>
-        <div class="bid">
-            <h3>bids:</h3>
-            <p>Siemen Gijbels</p>
-            <p class="amount">€3000,00</p>
-            <hr class="ruler">
-            <p>Gloria Juric</p>
-            <p class="amount">€3100,00</p>
-            <hr class="ruler">
-        </div>
+
+        @include('partials/bids')
     </div>
 @endsection
