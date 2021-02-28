@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\BidController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::get('/shipping-policy', function (){
 Route::get('/return-policy', function (){
     return view('return');
 });
+
+Route::get('/user/{id}', [UsersController::class, 'show']);
+Route::post('/user/{id}', [UsersController::class, 'updateAvatar'])->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

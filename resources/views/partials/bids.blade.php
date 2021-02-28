@@ -24,7 +24,7 @@
     <div class="bids-placed">
         @foreach($bids as $bid)
             @if($bid->post_id == $post->id)
-                <p>{{ $bid->user->name }}</p>
+                <p><a href="/user/{{ $bid->user->id }}">{{ $bid->user->name }}</a></p>
                 <p class="amount">€ {{ $bid->amount }},00</p>
                 @if(Auth::user()->id == $bid->user_id)
                     <div class="controls">

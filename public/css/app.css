@@ -11161,6 +11161,10 @@ h1 {
   width: 100%;
 }
 
+.control button {
+  margin-top: 10px;
+}
+
 .homepage-grid {
   width: 100vw;
 }
@@ -11293,6 +11297,38 @@ table td {
   color: #e3342f;
 }
 
+.user-name {
+  padding-top: 60px;
+}
+
+.form-wrapper {
+  clear: both;
+  padding: 40px 0;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  float: left;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  margin-right: 25px;
+}
+
+.avatar-nav {
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.avatar-nav:hover {
+  transform: scale(1.5);
+}
+
 @media only screen and (min-width: 700px) {
   .post-item {
     width: 45%;
@@ -11309,10 +11345,6 @@ table td {
     display: block;
     padding: 35px 20px 10px;
     background: transparent;
-  }
-
-  .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu li {
-    display: inline-block;
   }
 
   .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu .nav-item {
@@ -11360,6 +11392,23 @@ table td {
     padding-bottom: 500px;
   }
 
+  .post-wrapper .info-wrapper .bids-user {
+    width: calc(50% - 1em);
+    float: right;
+    clear: none;
+  }
+
+  .user-form-wrapper {
+    float: left;
+    width: calc(50% - 1em);
+  }
+
+  .bids-user {
+    width: calc(50% - 1em);
+    float: right;
+    clear: none;
+  }
+
   .containerCreate {
     padding: 20px 5%;
   }
@@ -11375,7 +11424,7 @@ table td {
 @media only screen and (min-width: 1200px) {
   .post-item {
     width: 30%;
-    margin: 30px calc(10%/6);
+    margin: 30px calc(10% / 6);
   }
 }
 

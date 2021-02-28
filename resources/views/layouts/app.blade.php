@@ -48,8 +48,9 @@
                             <a class="nav-link" href="/contact">Contact</a>
                         </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
                                 Useful links
                             </a>
 
@@ -89,15 +90,25 @@
                                 </li>
                             @endif
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    {{ __('Logout') }}
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user/{{ Auth::user()->id }}">
+                                    @if(isset(Auth::user()->avatar))
+                                        <img class="avatar-nav"
+                                             src="{{ asset('uploads/avatars') }}/{{ Auth::user()->avatar }}"/>
+                                    @else
+                                        <img class="avatar-nav" src="{{ asset('uploads/avatars/unset-avatar.jpg') }}">
+                                    @endif
+                                </a>
                             </li>
                         @endguest
                     </div>
