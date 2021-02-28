@@ -19,6 +19,30 @@ Route::get('/', [PostsController::class, 'index']);
 
 Auth::routes();
 
+Route::get('/contact', function (){
+    return view('contact');
+});
+
+Route::get('/about', function (){
+    return view('about');
+});
+
+Route::get('/terms-conditions', function (){
+    return view('terms');
+});
+
+Route::get('/privacy-policy', function (){
+    return view('privacy');
+});
+
+Route::get('/shipping-policy', function (){
+    return view('shipping');
+});
+
+Route::get('/return-policy', function (){
+    return view('return');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/items/{item}', [PostsController::class, 'show']);

@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <h1>Create new post</h1>
+    <h1 class="title">Create new post</h1>
 
     <div class="containerCreate">
         <form method="POST" action="/admin/create" enctype="multipart/form-data">

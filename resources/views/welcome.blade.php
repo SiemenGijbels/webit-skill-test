@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page_title', 'Fauxtion')
+
 @section('header_scripts')
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
@@ -14,13 +16,17 @@
                         @foreach(json_decode($post->media) as $file)
                             @if(ends_with($file, 'jpg') || ends_with($file, 'jpeg') || ends_with($file, 'png'))
                                 <img class="homepage-grid " src="{{ asset('uploads/') }}/{{ $file }}">
+                                @break
                             @endif
                         @endforeach
                         @foreach(json_decode($post->media) as $file)
-                            @if(ends_with($file, 'mp4') || ends_with($file, 'm4a') || ends_with($file, 'mov'))
-                                <video class="homepage-grid grid-pic" autoplay muted loop controls
-                                       src="{{ asset('uploads/') }}/{{ $file }}"></video>
-                            @endif
+                            @once
+                                @if(ends_with($file, 'mp4') || ends_with($file, 'm4a') || ends_with($file, 'mov'))
+                                    <video class="homepage-grid grid-pic" autoplay muted loop controls
+                                           src="{{ asset('uploads/') }}/{{ $file }}"></video>
+                                    @break
+                                @endif
+                            @endonce
                         @endforeach
                     @else
                         @if(ends_with($post->media, 'jpg') || ends_with($post->media, 'jpeg') || ends_with($post->media, 'png'))
@@ -34,7 +40,7 @@
                     <div class="post-item-info">
                         <h2 class="float-left">{{ $post->title }}</h2>
                         @if($post->price > $post->highest_bid)
-                        <h2 class="float-right price">€{{ $post->price }},00</h2>
+                            <h2 class="float-right price">€{{ $post->price }},00</h2>
                         @else
                             <h2 class="float-right price">€{{ $post->highest_bid }},00</h2>
                         @endif
@@ -52,7 +58,7 @@
             itemSelector: '.post-item'
         });
         // layout Masonry after each image loads
-        $grid.imagesLoaded().progress( function() {
+        $grid.imagesLoaded().progress(function () {
             $grid.masonry('layout');
         });
     </script>

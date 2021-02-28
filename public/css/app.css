@@ -10981,6 +10981,10 @@ li {
   text-decoration: none;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 .navbar {
   z-index: 30;
   position: fixed;
@@ -11149,7 +11153,7 @@ li {
 }
 
 .fieldGroup {
-  padding: 1em;
+  padding: 1.5em;
 }
 
 .fieldGroup .field .control input,
@@ -11175,23 +11179,118 @@ li {
   margin: 20px 0;
 }
 
-.bid p {
+.bid-form {
+  height: 100px;
+}
+
+.bid-form-label {
+  clear: both;
+  width: 100%;
+}
+
+.bid-form-amount {
+  width: 75%;
+  float: left;
+}
+
+.bid-form-button {
+  float: right;
+  margin-top: -16px;
+}
+
+.bid-form-button-edit {
+  margin-top: 0;
+}
+
+.bids {
+  clear: both;
+}
+
+.bids p {
   font-size: 1.2em;
   width: 50%;
   float: left;
 }
 
-.bid p.amount {
+.bids p.amount {
   text-align: right;
 }
 
-.bid .ruler {
+.bids .ruler {
   clear: both;
+}
+
+.bids .controls {
+  text-align: right;
+}
+
+.title,
+.body-text {
+  width: 90%;
+  margin: 20px 5%;
+}
+
+.title-half,
+.body-text-half {
+  width: 40%;
+  float: left;
+  margin: 20px 5%;
+}
+
+.create {
+  width: 40%;
+  float: left;
+  margin: 20px 5%;
+  padding: 1em;
+  border-radius: 10px;
+  background: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  float: right;
+  transition: transform 0.2s;
+}
+
+.create:hover {
+  text-decoration: none;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px #00000033;
+}
+
+.tableContainer {
+  width: 100vw;
+  height: 100%;
+  overflow-x: scroll;
 }
 
 table {
   width: 90%;
   margin: 20px 5%;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+table th,
+table td {
+  border: 1px solid black;
+  padding: 1em;
+}
+
+.edit {
+  color: #38c172;
+}
+
+.archive {
+  color: #6574cd;
+}
+
+.unarchive {
+  color: #3490dc;
+}
+
+.delete {
+  color: #e3342f;
 }
 
 @media only screen and (min-width: 700px) {
@@ -11212,26 +11311,64 @@ table {
     background: transparent;
   }
 
+  .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu li {
+    display: inline-block;
+  }
+
   .navbar .container .collapse .navbar-nav.ml-auto .toggleMenu .nav-item {
     display: inline-block;
   }
 }
 
 @media only screen and (min-width: 1050px) {
-  .media-wrapper,
-  .info-wrapper {
+  .post-wrapper {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+  }
+
+  .post-wrapper .media-wrapper,
+  .post-wrapper .info-wrapper {
     width: 50vw;
     float: left;
   }
 
-  .media-wrapper img,
-  .info-wrapper img {
+  .post-wrapper .media-wrapper img,
+  .post-wrapper .info-wrapper img {
     width: 100%;
     max-height: 100vh;
   }
 
-  .info-wrapper {
-    padding: 20px 40px;
+  .post-wrapper .media-wrapper {
+    overflow: scroll;
+    height: 100vh;
+  }
+
+  .post-wrapper .info-wrapper {
+    padding: 100px 40px 20px;
+  }
+
+  .post-wrapper .info-wrapper .bids {
+    overflow: hidden;
+  }
+
+  .post-wrapper .info-wrapper .bids-placed {
+    overflow: scroll;
+    height: 1000px;
+    padding-bottom: 500px;
+  }
+
+  .containerCreate {
+    padding: 20px 5%;
+  }
+
+  .containerCreate .fieldGroup {
+    width: 50%;
+    float: left;
+    padding-left: 0;
+    padding-right: 2em;
   }
 }
 

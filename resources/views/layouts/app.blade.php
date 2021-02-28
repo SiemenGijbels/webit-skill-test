@@ -7,17 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'fauxtion') }}</title>
-
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Fonts -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('page_title')</title>
     @yield('header_scripts')
+    @yield('styles')
 </head>
 <body>
 <div id="app">
@@ -44,6 +41,34 @@
                         <span></span>
                     </label>
                     <div class="toggleMenu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">Contact</a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Useful links
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/terms-conditions">Terms &amp; Conditions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/privacy-policy">Privacy policy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shipping-policy">Shipping policy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/return-policy">Return policy</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -58,6 +83,11 @@
                                 </li>
                             @endif
                         @else
+                            @if(Auth::user()->type == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin">Admin</a>
+                                </li>
+                            @endif
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -69,11 +99,6 @@
                                         @csrf
                                     </form>
                             </li>
-                            @if(Auth::user()->type == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/admin">Admin</a>
-                                </li>
-                            @endif
                         @endguest
                     </div>
                 </ul>

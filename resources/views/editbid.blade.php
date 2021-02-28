@@ -1,15 +1,14 @@
 @extends('layouts.app')
 
+@section('page_title', 'Edit bid')
+
 @section('content')
-    <h1>Edit bid:</h1>
+    <h1 class="title title-half">Edit bid:</h1>
     @if(Auth::user())
         <div class="col-md-12">
-            <form method="POST" action="/items/{{ $post->slug }}/editBid/{{ $bid->id }}">
+            <form method="POST" class="bid-form" action="/items/{{ $post->slug }}/editBid/{{ $bid->id }}">
                 @method('PUT')
                 @csrf
-                <div class="form-group">
-                    <input type="text" class="form-control" id="amount" name="amount" value="{{ old('amount', $bid->amount) }}">
-                </div>
                 <div class="form-group">
                     <input type="hidden" class="form-control" id="id" name="id" value="{{ $bid->id }}">
                 </div>
@@ -23,7 +22,10 @@
                     <input type="hidden" class="form-control" id="user_id" name="user_id"
                            value="{{ Auth::user()->id }}">
                 </div>
-                <button id="bidSubmit" type="submit" class="btn btn-primary" disabled>Bid</button>
+                <div class="form-group">
+                    <input type="text" class="form-control bid-form-amount" id="amount" name="amount" value="{{ old('amount', $bid->amount) }}">
+                </div>
+                <button id="bidSubmit" type="submit" class="btn btn-primary bid-form-button bid-form-button-edit" disabled>Bid</button>
             </form>
         </div>
     @endif
