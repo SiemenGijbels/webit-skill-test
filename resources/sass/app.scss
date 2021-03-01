@@ -15,6 +15,7 @@ body, html {
 h1, h2, h3, h4, h5, h6, p, a, li {
     color: $font-color;
     text-decoration: none;
+    margin: revert;
 }
 
 h1 {
@@ -417,7 +418,25 @@ table {
         border-color: white;
     }
 
-    &:hover {
+    &:not(:disabled):not(.disabled):active {
+        color: $font-color;
+        background-color: white;
+        border-color: white;
+    }
+
+    &:focus {
+        color: $font-color;
+        background-color: white;
+        border-color: white;
+    }
+
+    &:active:enabled {
+        color: $font-color;
+        background-color: white;
+        border-color: white;
+    }
+
+    &:hover:enabled {
         color: $font-color;
         background-color: white;
         border-color: white;

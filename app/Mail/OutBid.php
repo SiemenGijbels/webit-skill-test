@@ -38,6 +38,6 @@ class OutBid extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.outbid');
+        return $this->view('emails.outbid')->subject('You got outbid on ' . $this->item .'!');
     }
 }

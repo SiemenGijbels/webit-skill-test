@@ -34,6 +34,6 @@ class BidPlaced extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.bidplaced');
+        return $this->view('emails.bidplaced')->subject('Your bid on ' . $this->item . ' was placed!');
     }
 }

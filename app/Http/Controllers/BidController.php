@@ -32,9 +32,13 @@ class BidController extends Controller
             $bids = Post::where('slug', request('slug'))->firstOrFail()->bids()->orderBy('amount', 'desc')->get();
             foreach ($bids as $bid) {
                 if(Auth::user()->id != $bid->user_id){
+
                     $outbidRecipient = $bid->user->email;
+
                     Mail::to($outbidRecipient)
                         ->send(new OutBid($bid->user->name, Auth::user()->name, $bid->amount, request('amount'), $post->title));
+
+                    break;
                 }
             }
 

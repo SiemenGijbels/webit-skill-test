@@ -10979,6 +10979,7 @@ a,
 li {
   color: #010102;
   text-decoration: none;
+  margin: revert;
 }
 
 h1 {
@@ -11358,7 +11359,25 @@ table td {
   border-color: white;
 }
 
-.btn-primary:hover {
+.btn-primary:not(:disabled):not(.disabled):active {
+  color: #010102;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-primary:focus {
+  color: #010102;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-primary:active:enabled {
+  color: #010102;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-primary:hover:enabled {
   color: #010102;
   background-color: white;
   border-color: white;
