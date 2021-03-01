@@ -31,7 +31,7 @@
 
                         <div class="field is-grouped">
                             <div class="control">
-                                <button class="button is-link" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit">Update profile picture</button>
                             </div>
                         </div>
                     </form>

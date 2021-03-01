@@ -526,11 +526,13 @@ table {
     .user-form-wrapper {
         float: left;
         width: calc(50% - 1em);
+        padding: 1em;
     }
     .bids-user {
         width: calc(50% - 1em);
         float: right;
         clear: none;
+        padding: 1em;
     }
 
 
