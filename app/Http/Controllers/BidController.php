@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\BidPlaced;
 use App\Mail\OutBid;
+use App\Mail\EditBid;
 use App\Models\Post;
 use App\Models\Bid;
 use Illuminate\Http\Request;
@@ -78,6 +79,9 @@ class BidController extends Controller
         $currentHighestBid = $post->highest_bid;
         if(request('amount') > $currentHighestBid) {
             $post->highest_bid = request('amount');
+
+            Mail::to(Auth::user()->email)
+                ->send(new EditBid(Auth::user()->name, request('amount'), $post->title));
         }
         $post->update();
 
