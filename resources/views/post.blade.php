@@ -47,7 +47,7 @@
 
             <hr>
 
-            @if(Auth::user()->type == 1)
+            @if(Auth::user() && Auth::user()->type == 1)
                 <p><a href="/admin/{{ $post->slug }}/edit">Edit post</a></p>
                 <p><a href="/admin/{{$post->slug}}/archive">Archive post</a></p>
                 <p><a href="/admin/{{ $post->slug }}/delete">Delete post</a></p>
