@@ -7,12 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class BidPlaced extends Mailable
+class OutBid extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $user;
+    public $outBidder;
     public $bid;
+    public $oldBid;
     public $item;
 
     /**
@@ -20,9 +22,11 @@ class BidPlaced extends Mailable
      *
      * @return void
      */
-    public function __construct($user, $bid, $item)
+    public function __construct($user, $outBidder, $oldBid, $bid, $item)
     {
         $this->user = $user;
+        $this->outBidder = $outBidder;
+        $this->oldBid = $oldBid;
         $this->bid = $bid;
         $this->item = $item;
     }
@@ -34,6 +38,6 @@ class BidPlaced extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.bidplaced');
+        return $this->view('emails.outbid');
     }
 }

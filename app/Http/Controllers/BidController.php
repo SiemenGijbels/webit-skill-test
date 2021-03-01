@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BidPlaced;
+use App\Mail\OutBid;
 use App\Models\Post;
 use App\Models\Bid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BidController extends Controller
 {
 
     public function store(Request $request)
     {
-        Auth::user();
+        $user = Auth::user();
+
         $bid = new Bid([
             'post_id' => request('post_id'),
             'slug' => request('slug'),
@@ -25,8 +29,22 @@ class BidController extends Controller
         $currentHighestBid = $post->highest_bid;
         if(request('amount') > $currentHighestBid) {
             $post->highest_bid = request('amount');
+            $bids = Post::where('slug', request('slug'))->firstOrFail()->bids()->orderBy('amount', 'desc')->get();
+            foreach ($bids as $bid) {
+                if(Auth::user()->id != $bid->user_id){
+                    $outbidRecipient = $bid->user->email;
+                    Mail::to($outbidRecipient)
+                        ->send(new OutBid($bid->user->name, Auth::user()->name, $bid->amount, request('amount'), $post->title));
+                }
+            }
+
         }
         $post->update();
+
+        $bidderRecipient = $user->email;
+
+        Mail::to($bidderRecipient)
+        ->send(new BidPlaced($user->name, request('amount'), $post->title));
 
         return redirect('/thanks/' . request('slug') . '/' . request('amount'));
     }

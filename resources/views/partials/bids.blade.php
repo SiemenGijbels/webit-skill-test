@@ -26,7 +26,7 @@
             @if($bid->post_id == $post->id)
                 <p><a href="/user/{{ $bid->user->id }}">{{ $bid->user->name }}</a></p>
                 <p class="amount">€ {{ $bid->amount }},00</p>
-                @if(Auth::user()->id == $bid->user_id)
+                @if(Auth::user() && Auth::user()->id == $bid->user_id)
                     <div class="controls">
                         <a href="/items/{{$post->slug}}/editBid/{{ $bid->id }}">Edit</a>
                         <a href="/items/{{$post->slug}}/deleteBid/{{ $bid->id }}">Delete</a>

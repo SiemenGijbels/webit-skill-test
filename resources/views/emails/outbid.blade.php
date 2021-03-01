@@ -8,9 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Your bid of €{{ $bid }},00 was placed!</h1>
-<p>Dear {{ $user }}, <br> We received your bid of €{{ $bid }},00 on {{ $item }}. <br> Congratulations, if someone
-    outbids you we will notify you.
+<h1>You got outbid!</h1>
+<p>Dear {{ $user }}, <br> {{ $outBidder }} currently bids {{ $bid }} on {{ $item }}, outbidding your previous offer of {{ $oldBid }}.
     <br> Good luck, Team Fauxtion</p>
 </body>
 </html>
