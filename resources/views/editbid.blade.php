@@ -3,7 +3,7 @@
 @section('page_title', 'Edit bid')
 
 @section('content')
-    <h1 class="title title-half">Edit bid:</h1>
+    <h1 class="title title-half">Edit your bid:</h1>
     @if(Auth::user())
         <div class="col-md-12">
             <form method="POST" class="bid-form" action="/items/{{ $post->slug }}/editBid/{{ $bid->id }}">

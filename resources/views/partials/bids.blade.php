@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label class="bid-form-label" for="amount">Place your bid.</label>
-            <input type="text" class="form-control bid-form-amount" id="amount" name="amount">
+            <input type="text" class="form-control bid-form-amount" id="amount" name="amount" @if($post->highest_bid > 0) placeholder="Enter a bid that's higher than the current highest bid" @else placeholder="Enter a bid that's higher than the asking price" @endif>
         </div>
         <button id="bidSubmit" type="submit" class="btn btn-primary bid-form-button" disabled>Bid</button>
     </form>
